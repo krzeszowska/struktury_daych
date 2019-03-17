@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1552849911 source:/home/julka/uczelnia/sem4/PAMSI/test/main.cpp
+	<iostream>
+	<vector>
+	<list>
+	"Lista.h"
+	"Stos.h"
+	"KolejkaPriorytetowa.h"
+	"Kolejka.h"
+	"TablicaMieszajaca.h"
+
+1552576825 source:/home/julka/uczelnia/sem4/PAMSI/test/src/Lista.cpp
+	"Lista.h"
+
+1552849412 /home/julka/uczelnia/sem4/PAMSI/test/include/Lista.h
+	<iostream>
+
+1552832162 /home/julka/uczelnia/sem4/PAMSI/test/include/Stos.h
+	<iostream>
+
+1552763863 source:/home/julka/uczelnia/sem4/PAMSI/test/src/Stos.cpp
+	"Stos.h"
+
+1552832898 source:/home/julka/uczelnia/sem4/PAMSI/test/src/KolejkaPriorytetowa.cpp
+	"KolejkaPriorytetowa.h"
+
+1552841563 /home/julka/uczelnia/sem4/PAMSI/test/include/KolejkaPriorytetowa.h
+	<iostream>
+
+1552841215 source:/home/julka/uczelnia/sem4/PAMSI/test/src/Kolejka.cpp
+	"Kolejka.h"
+
+1552841574 /home/julka/uczelnia/sem4/PAMSI/test/include/Kolejka.h
+	<iostream>
+
+1552849934 /home/julka/uczelnia/sem4/PAMSI/test/include/TablicaMieszajaca.h
+	"Lista.h"
+
