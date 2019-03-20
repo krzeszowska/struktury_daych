@@ -68,11 +68,15 @@ ElementListy<Typ>::ElementListy(Typ a){
     wart = a;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 ElementListy<Typ>::~ElementListy()
 {
     //dtor
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::ogon(){
@@ -83,6 +87,8 @@ ElementListy<Typ>* ElementListy<Typ>::ogon(){
     }
     return buff;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::push_end(Typ a){
@@ -100,6 +106,8 @@ ElementListy<Typ>* ElementListy<Typ>::push_end(Typ a){
     return elem;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::push_front(Typ a){
     ElementListy* elem = new ElementListy(a);
@@ -108,6 +116,8 @@ ElementListy<Typ>* ElementListy<Typ>::push_front(Typ a){
 
     return elem;
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::push_in_the_middle(Typ a, int gdzie){
@@ -135,6 +145,8 @@ ElementListy<Typ>* ElementListy<Typ>::push_in_the_middle(Typ a, int gdzie){
 
     return this;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::remove(int ktory){
@@ -166,6 +178,8 @@ ElementListy<Typ>* ElementListy<Typ>::remove(int ktory){
     return this;
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::remove_end(){
     ElementListy<Typ>* buff = this;
@@ -178,6 +192,8 @@ ElementListy<Typ>* ElementListy<Typ>::remove_end(){
         buff2->nast = nullptr;
         return this;
 }
+
+/////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ElementListy<Typ>* ElementListy<Typ>::operator [](int index){
@@ -197,6 +213,8 @@ ElementListy<Typ>* ElementListy<Typ>::operator [](int index){
     return buff;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const ElementListy<Typ>& obj){
     const ElementListy<Typ>* buff;
@@ -209,7 +227,7 @@ std::ostream& operator << (std::ostream& str, const ElementListy<Typ>& obj){
 
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 ListaDwukierunkowa<Typ>::~ListaDwukierunkowa<Typ>(){
@@ -222,6 +240,8 @@ ListaDwukierunkowa<Typ>::~ListaDwukierunkowa<Typ>(){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::dodajGlowe(Typ a){
     //ElementListy<Typ>* buff;
@@ -233,6 +253,8 @@ void ListaDwukierunkowa<Typ>::dodajGlowe(Typ a){
     //this->glowa = buff;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::dodajOgon(Typ a){
     //ElementListy<Typ>* buff;
@@ -243,6 +265,8 @@ void ListaDwukierunkowa<Typ>::dodajOgon(Typ a){
     else this->ogon = this->ogon->push_end(a);
     //this->ogon;
 }
+
+/////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::dodajWSrodku(Typ a, int gdzie){
@@ -257,6 +281,8 @@ void ListaDwukierunkowa<Typ>::dodajWSrodku(Typ a, int gdzie){
     else this->glowa->push_in_the_middle(a,gdzie);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::usunGlowe(){
     if(this->pokazGlowe() == nullptr) std::cout << "brak glowy" << std::endl;
@@ -266,11 +292,15 @@ void ListaDwukierunkowa<Typ>::usunGlowe(){
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::usunOgon(){
     if(this->pokazOgon() == nullptr) std::cout << "brak ogona" << std::endl;
     else this->glowa->remove_end();
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 void ListaDwukierunkowa<Typ>::usunSrodek(int ktory){
@@ -278,12 +308,15 @@ void ListaDwukierunkowa<Typ>::usunSrodek(int ktory){
     else this->glowa->remove(ktory);
 }
 
+
 template <typename Typ>
 ElementListy<Typ>* ListaDwukierunkowa<Typ>::operator [] (int ktory){
     if(this->pokazGlowe() == nullptr) return nullptr;
     ElementListy<Typ>* buff = (*this->glowa)[ktory];
     return buff;
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const ListaDwukierunkowa<Typ>& obj){

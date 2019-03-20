@@ -13,18 +13,23 @@ public:
     void ustawNast(ElementKolejki<Typ>* elem) {nast = elem;}
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 class Kolejka{
     ElementKolejki<Typ>* glowa;
     public:
         ElementKolejki<Typ>* pokazGlowe() const {return glowa;}
-        Kolejka() {glowa = nullptr;}
+        Kolejka<Typ>() {glowa = nullptr;}
         void enqueue(Typ a);
         Typ dequeue();
+        ~Kolejka<Typ>();
     protected:
 
     private:
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 void Kolejka<Typ>::enqueue(Typ a){
@@ -37,6 +42,8 @@ void Kolejka<Typ>::enqueue(Typ a){
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 Typ Kolejka<Typ>::dequeue(){
     ElementKolejki<Typ>* buff = glowa->pokazNast();
@@ -46,6 +53,8 @@ Typ Kolejka<Typ>::dequeue(){
     return wart;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const ElementKolejki<Typ>& obj){
     const ElementKolejki<Typ>* buff = &obj;
@@ -54,7 +63,20 @@ std::ostream& operator << (std::ostream& str, const ElementKolejki<Typ>& obj){
     return str;
 }
 
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+template <typename Typ>
+Kolejka<Typ>::~Kolejka<Typ>(){
+    ElementKolejki<Typ>* buff = glowa;
+    ElementKolejki<Typ>* buff2 = glowa;
+    while(buff != nullptr){
+        buff2 = buff->pokazNast();
+        delete buff;
+        buff = buff2;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const Kolejka<Typ>& obj){

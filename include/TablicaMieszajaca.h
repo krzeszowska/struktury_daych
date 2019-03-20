@@ -11,7 +11,6 @@ class TablicaMieszajaca
     int rozmiar;
     int (*func)(const TypKlucza& key);
 
-
 public:
     TablicaMieszajaca(int n, int (*func)(const TypKlucza& key)){
         array = new ListaDwukierunkowa<Typ>[n];

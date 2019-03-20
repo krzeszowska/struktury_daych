@@ -14,6 +14,8 @@ public:
     void ustawNast(KomorkaStosu<Typ>* a);
 };
 
+//////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 class Stos{
     KomorkaStosu<Typ>* glowa;
@@ -23,6 +25,7 @@ public:
     void push(Typ a);
     Typ pop();
     bool isEmpty();
+    ~Stos<Typ>();
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -48,6 +51,8 @@ void Stos<Typ>::push(Typ a){
     //std::cout << glowa << std::endl;
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 Typ Stos<Typ>::pop(){
     KomorkaStosu<Typ>* buff = glowa->pokazNast();
@@ -57,11 +62,15 @@ Typ Stos<Typ>::pop(){
     return ret;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 bool Stos<Typ>::isEmpty(){
     if(glowa == nullptr) return 1;
     else return 0;
 }
+
+///////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const Stos<Typ>& obj){
@@ -73,63 +82,18 @@ std::ostream& operator << (std::ostream& str, const Stos<Typ>& obj){
     return str;
 }
 
-
-
-
-
-
-
-
-
-
-
-/*
-template <typename Typ>
-class Stos{
-    Typ element;
-    Stos<Typ>* nast;
-
-    public:
-        Stos<Typ>() {nast = nullptr;}
-        Stos<Typ>(Typ a) {nast = nullptr; element = a;}
-        Stos<Typ>* pokaz_nast() const {return nast;}
-        Typ pokaz_elem() const {return element;}
-        Stos<Typ>* push(Typ a);
-        Stos<Typ>* pop();
-
-    protected:
-
-    private:
-};
+//////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
-Stos<Typ>* Stos<Typ>::push(Typ a){
-    Stos<Typ>* nowy = new Stos(a);
-    nowy->nast = this;
-    return nowy;
-}
-
-template <typename Typ>
-Stos<Typ>* Stos<Typ>::pop(){
-    Stos<Typ> buff = this;
-    Stos<Typ> buff2 = buff->nast;
-    delete buff;
-    return buff2;
-}
-
-template <typename Typ>
-std::ostream& operator << (std::ostream& str, const Stos<Typ>& obj){
-    //std::cout << "ala ma kota" << std::endl;
-    const Stos<Typ>* buff;
-    buff = &obj;
-
-    while (buff != nullptr){
-        str << buff->pokaz_elem() << ", " << buff->pokaz_nast() << std::endl;
-        buff = buff->pokaz_nast();
+Stos<Typ>::~Stos<Typ>(){
+    KomorkaStosu<Typ>* buff = glowa;
+    KomorkaStosu<Typ>* buff2 = glowa;
+    while(buff != nullptr){
+        buff2 = buff->pokazNast();
+        delete buff;
+        buff = buff2;
     }
-    return str;
-}
 
-*/
+}
 
 #endif // STOS_H

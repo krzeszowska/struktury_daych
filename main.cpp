@@ -22,22 +22,32 @@ void testListy(){
    obj->usunSrodek(2);
    obj->usunSrodek(3);
 
-    cout << *(*obj)[1] << endl;
+    cout << "Zawartosc listy:" << endl;
+    cout << *obj << endl;
+    cout << "Pierwszy (po glowie) wyraz listy: " << *(*obj)[1] << endl;
     delete obj;
 }
 
+///////////////////////////////////////////////////////////////////////
+
 void testStosu(){
-    Stos<int> stos;
-    stos.push(2);
-    stos.push(3);
+    Stos<int>* stos = new Stos<int>;
+    stos->push(2);
+    stos->push(3);
+    stos->push(4);
+    stos->push(5);
 
-    stos.pop();
+    stos->pop();
 
-    cout << stos << endl;
+    cout << "Zawartosc stosu: " << endl;
+    cout << *stos << endl;
+    cout << "Czy stos jest pusty?: " << stos->isEmpty() << endl;
 }
 
+/////////////////////////////////////////////////////////////////////
+
 void testKP(){
-    KolejkaPriorytetowa<int> kolejka;
+    KolejkaPriorytetowa<int> kolejka ;
     kolejka.enqueue(2, 10);
     kolejka.enqueue(3, 15);
     kolejka.enqueue(7, 1);
@@ -46,21 +56,27 @@ void testKP(){
     kolejka.dequeue();
     kolejka.dequeue();
 
+    cout << "Zawartosc kolejki priorytetowej (priorytet):" << endl;
     cout << kolejka << endl;
 }
+
+////////////////////////////////////////////////////////////////////
 
 void testKolejki(){
-    Kolejka<int> kolejka;
-    kolejka.enqueue(1);
-    kolejka.enqueue(2);
-    kolejka.enqueue(3);
-    kolejka.enqueue(4);
-    kolejka.enqueue(5);
-    kolejka.dequeue();
-    kolejka.dequeue();
+    Kolejka<int>* kolejka = new Kolejka<int>;
+    kolejka->enqueue(1);
+    kolejka->enqueue(2);
+    kolejka->enqueue(3);
+    kolejka->enqueue(4);
+    kolejka->enqueue(5);
+    kolejka->dequeue();
+    kolejka->dequeue();
 
-    cout << kolejka << endl;
+    cout << "Zawartosc kolejki:" << endl;
+    cout << *kolejka << endl;
 }
+
+////////////////////////////////////////////////////////
 
 int hashCalcInt(const int& i){
 
@@ -75,6 +91,8 @@ int hashCalcInt(const int& i){
     return hash;
 }
 
+//////////////////////////////////////////////////////
+
 int hashCalcString(const string& i){
 
     int hash = 1;
@@ -87,8 +105,10 @@ int hashCalcString(const string& i){
     return hash;
 }
 
+///////////////////////////////////////////////////////
+
 void testTablicyMieszajacej(){
-    cout<<"======Tablica int(key: int)======"<<endl;
+    cout << "======Tablica int(key: int)======" << endl;
     TablicaMieszajaca<int, int> tab(10, hashCalcInt);
     tab.insert(1000, 1);
     tab.insert(1001, 12);
@@ -96,9 +116,9 @@ void testTablicyMieszajacej(){
     tab.insert(1003, 14);
     tab.insert(1004, 15);
 
-    cout<<"Tablica intow: \n"<<tab<<endl;
+    cout << "Tablica intow: \n" << tab << endl;
 
-    cout<<"======Tablica string(key: string)======"<<endl;
+    cout << "======Tablica string(key: string)======" << endl;
     TablicaMieszajaca<string, string> stringTab(10, hashCalcString);
     stringTab.insert("AAA", "ala");
     stringTab.insert("BBB", "ma");
@@ -106,9 +126,9 @@ void testTablicyMieszajacej(){
     stringTab.insert("ABC", "szarego");
     stringTab.insert("CBA", "kotka");
 
-    cout<<stringTab<<endl;
-    cout<<"Pobranie 'AAA': "<<stringTab["AAA"]<<endl;
-    cout<<"Pobranie 'AAA'[0]: "<<*(stringTab["AAA"][0])<<endl;
+    cout << stringTab << endl;
+    cout << "Pobranie 'AAA': " << stringTab["AAA"] << endl;
+    cout << "Pobranie 'AAA'[0]: " << *(stringTab["AAA"][0]) << endl;
 
     stringTab.remove("AAA");
     stringTab.remove("BBB");
@@ -116,23 +136,27 @@ void testTablicyMieszajacej(){
     stringTab.remove("ABC");
     stringTab.remove("CBA");
 
-    cout<<"Tablica po usunieciu wszystkich kluczy: \n"<<stringTab<<endl;
-
-
-
+    cout << "Tablica po usunieciu wszystkich kluczy: \n" << stringTab << endl;
 }
+
+///////////////////////////////////////////////////////////////////////
 
 int main()
 {
+    cout << "Test tablicy mieszajacej:" << endl;
     testTablicyMieszajacej();
-
-    //testListy();
-    //cout << *new_list << endl;
-    //cout << *new_list->ogon() << endl;
-    //Lista<int>* a = (*new_list)[2];
-    //cout << *a << endl;
-
-
+    cout << endl;
+    cout << "Test kolejki:" << endl;
+    testKolejki();
+    cout << endl;
+    cout << "Test listy:" << endl;
+    testListy();
+    cout << endl;
+    cout << "Test stosu:" << endl;
+    testStosu();
+    cout << endl;
+    cout << "Test kolejki priorytetowej:" << endl;
+    testKP();
 
     return 0;
 }

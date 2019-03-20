@@ -15,6 +15,8 @@ public:
     void ustawNast(ElementKolejkiPriorytetowej<Typ>* elem) {nast = elem;}
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 class KolejkaPriorytetowa{
     ElementKolejkiPriorytetowej<Typ>* glowa;
@@ -23,10 +25,13 @@ class KolejkaPriorytetowa{
         KolejkaPriorytetowa() {glowa = nullptr;}
         void enqueue(Typ a, int prio);
         Typ dequeue();
+        ~KolejkaPriorytetowa<Typ>();
     protected:
 
     private:
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 void KolejkaPriorytetowa<Typ>::enqueue(Typ a, int prio){
@@ -48,6 +53,8 @@ void KolejkaPriorytetowa<Typ>::enqueue(Typ a, int prio){
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 Typ KolejkaPriorytetowa<Typ>::dequeue(){
     ElementKolejkiPriorytetowej<Typ>* buff = glowa->pokazNast();
@@ -57,6 +64,8 @@ Typ KolejkaPriorytetowa<Typ>::dequeue(){
     return wart;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const ElementKolejkiPriorytetowej<Typ>& obj){
     const ElementKolejkiPriorytetowej<Typ>* buff = &obj;
@@ -65,7 +74,21 @@ std::ostream& operator << (std::ostream& str, const ElementKolejkiPriorytetowej<
     return str;
 }
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+template <typename Typ>
+KolejkaPriorytetowa<Typ>::~KolejkaPriorytetowa<Typ>(){
+    ElementKolejkiPriorytetowej<Typ>* buff = glowa;
+    ElementKolejkiPriorytetowej<Typ>* buff2 = glowa;
+    while(buff != nullptr){
+        buff2 = buff->pokazNast();
+        delete buff;
+        buff = buff2;
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 template <typename Typ>
 std::ostream& operator << (std::ostream& str, const KolejkaPriorytetowa<Typ>& obj){
